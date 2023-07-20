@@ -1,1 +1,38 @@
-<p>humedad-ambiente works!</p>
+<div >
+
+
+    <p style="text-align: center;">HUMEDAD DEL AMBIENTE</p>
+    <highcharts-chart 
+      [Highcharts]="Highcharts"
+      [options]="chartOptions"
+    
+      style="width: 100%; height: 400px; display: block; border-radius: 5px;"
+    ></highcharts-chart>
+    <button (click)="EscribirData()">Agregar dato</button>
+    <input type="number" [(ngModel)]="valor">
+    
+    </div>
+    <div class="cards">
+      <mat-card class="mat-card-custom">
+      <mat-card-actions class="mat-card-actions justify-content-center flex-wrap">
+        
+        
+          <mat-checkbox  class="example-margin" [(ngModel)]="isChecked"  (change)="estadoAmbien(0,0)">Manual!</mat-checkbox>
+         
+            
+            <button class="m-2" 
+            (click)="estadoAmbien(1,1)"
+            mat-raised-button color="primary"
+             [disabled]="!isChecked">Vaporizar</button>
+           
+            <button  class="m-2"
+            (click)="estadoAmbien(0,0)"
+            mat-raised-button color="warn" [disabled]="!isChecked">Apagar</button>
+            
+            
+        
+      </mat-card-actions>
+    </mat-card>
+    </div>
+    
+    

@@ -1,1 +1,32 @@
-<p>humedad works!</p>
+<div>
+    <highcharts-chart 
+  [Highcharts]="Highcharts"
+  [options]="chartOptions"
+  style="width: 100%; height: 400px; display: block; border-radius: 5px;"
+></highcharts-chart>
+</div>
+
+<div class="cards">
+  <mat-card class="mat-card-custom">
+  <mat-card-actions class="mat-card-actions justify-content-center flex-wrap">
+    
+    
+      <mat-checkbox  class="example-margin" [(ngModel)]="isChecked"  (change)="estadoSuelo(0,0)">Manual!</mat-checkbox>
+     
+        
+        <button class="m-2" 
+        (click)="estadoSuelo(1,1)"
+        mat-raised-button color="primary"
+         [disabled]="!isChecked">Regar</button>
+       
+        <button  class="m-2"
+        (click)="estadoSuelo(0,0)"
+        mat-raised-button color="warn" [disabled]="!isChecked">Apagar</button>
+        
+        
+    
+  </mat-card-actions>
+</mat-card>
+</div>
+
+

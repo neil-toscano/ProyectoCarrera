@@ -1,0 +1,18 @@
+.mat-card-actions{
+    margin: auto;
+    display: flex;
+}
+.mat-card-custom{
+background-color: rgb(151, 155, 160);
+width: 50%;
+margin: auto;
+}
+
+
+  
+  @media (max-width: 767px) {
+    .mat-card-actions {
+      flex-direction: column;
+    }
+  }
+  

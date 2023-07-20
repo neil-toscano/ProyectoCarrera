@@ -1,0 +1,55 @@
+
+<div class="card flex  cards-dentro">
+  <div>
+
+  
+  <p-card header="Color" [style]="{ width: '360px' }">
+      <ng-template pTemplate="header">
+        <div class="card">
+          <p-messages severity="info">
+            <ng-template pTemplate>
+                <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" width="32" />
+                <div class="ml-2" style="font-size: 20px;">Selecciona el Color.</div>
+            </ng-template>
+        </p-messages>
+      </div>
+      </ng-template>
+      <p style="text-align: center;">
+        <input type="color" #valor id="favcolor" name="favcolor" value="#ff0000">
+        
+      </p>
+      <ng-template pTemplate="footer" style="text-align: center;">
+        <mat-checkbox 
+        style="background-color: rgb(75, 71, 71); margin-right: 8px;
+        border-radius: 5px; padding: 3px;"
+        class="example-margin" [(ngModel)]="isChecked"  
+        (change)="getColorRGB(valor,encen=0)"
+        >Manual</mat-checkbox>
+         
+        <p-button label="Enviar"
+        style="text-align: center;"
+        styleClass="p-button-help" [disabled]="!isChecked" (click)="getColorRGB(valor,encen=1)">
+         
+        </p-button>
+        <p-button label="Apagar"
+        style="text-align: center;"
+        styleClass="p-button-warning" [disabled]="!isChecked" (click)="getColorRGB(valor,encen=0)">
+         
+        </p-button>
+          </ng-template>
+  </p-card>
+</div>
+<div>
+
+
+  <p-card header="Intensidad de la luz en LUX" [style]="{ width: '500px' }">
+
+      <highcharts-chart 
+  [Highcharts]="Highcharts"
+  [options]="chartOptions"
+
+  style="width: 100%; height: 400px; display: block; border-radius: 5px;"
+></highcharts-chart>
+  </p-card>
+</div>
+</div>

@@ -1,28 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import * as Highcharts from 'highcharts';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue, set, push } from 'firebase/database';
+import * as Highcharts from 'highcharts';
+
+
 @Component({
-  selector: 'app-humedad',
-  templateUrl: './humedad.component.html',
-  styleUrls: ['./humedad.component.css']
+  selector: 'app-luz',
+  templateUrl: './luz.component.html',
+  styleUrls: ['./luz.component.css']
 })
-export class HumedadComponent implements OnInit {
-  
-  regar:number=0;
+export class LuzComponent implements OnInit {
   isChecked:boolean=false;
-  fosforo:any={}
-  nitrogeno:any={}
-  potasio:any={}
+  encen:number=0;
+  lucs:any={};
+  messages:string="Seleccione el color ";
   Highcharts: typeof Highcharts = Highcharts;
-  hora:number[]=[5,6,7,8,9,10,11,12,13,14,15,16];
-   temperatura:number[]=[12,12,15,24,22,22,21,18,28,13,12,19];
-    datoxy:any[]=this.hora.map((x,index)=>[x,this.temperatura[index]]);
-    datoxyz:any[]=this.hora.map((x,index)=>[x,this.temperatura[index]*2]);
-    datoxyzz:any[]=this.hora.map((x,index)=>[x,this.temperatura[index]*3]);
   chartOptions: any= {
     title:{
-      text:'Humedad Suelo [%]'
+      text:'Intensidad Lux'
     },
     xAxis:{
       title:{
@@ -38,14 +33,14 @@ export class HumedadComponent implements OnInit {
     },
     yAxis:{
       title:{
-        text:'Humedad Tierra [%]'
+        text:'Lux'
       }
     },
     series: [{
       data: [],
-      color:'#F4D03F',
+      color:'#8E44AD',
       type: 'area',
-      name:'Humedad Suelo',
+      name:'Lux ',
       fillOpacity:0.5,
       
       
@@ -58,10 +53,11 @@ export class HumedadComponent implements OnInit {
     };
     const app = initializeApp(firebaseConfig);//conexion entre firebase y mi aplicacion
     const database = getDatabase(app);//referencia a la base de datos
-    const starCountRef = ref(database, 'sensores/HumedadSuelo');
+
+    const starCountRef = ref(database, 'sensores/Lucs');
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
-      this.potasio=Object.values(data);
+      this.lucs=Object.values(data);
       const newData = Object.values(data).map((item: any) => [
         new Date(item.fecha).getTime(),
         item.valor
@@ -81,12 +77,11 @@ export class HumedadComponent implements OnInit {
     
   }
 
+  
+   getColorRGB(valor:any,encen:number) {
+    
+    const valorHex=valor.value;
 
-
-
-  estadoSuelo(regar:number,apagar:number){
-    this.regar=regar;
-    const db = getDatabase();
     let checked:number=0;
     if(this.isChecked){
       checked=1
@@ -94,27 +89,44 @@ export class HumedadComponent implements OnInit {
     else{
       checked=0
     }
-    const data:{}={
-      checkBox:checked,
-      regar:regar,
-      Apagar:apagar
+    
+    console.log("obtenido",valor.value);
+   
+    const rgb = this.hexToRGB(valorHex);
+    console.log("hola",rgb);
+    const red = rgb[0];
+    const green = rgb[1];
+    const blue = rgb[2];
+    const data={
+      "R":red,
+      "G":green,
+      "B":blue,
+      "E":encen,
+      checkbox:checked
 
     }
-console.log("ambiente");
-
-set(ref(db, 'sensores/estado_Suelo'), data)
+    console.log("Color seleccionado: RGB(" + red + ", " + green + ", " + blue + ")");
+    const db = getDatabase();
+    set(ref(db, 'sensores/luz'), data)
 .then(() => {
   console.log("Clave y valor guardados exitosamente en Firebase Realtime Database.");
 })
 .catch((error) => {
   console.error("Error al guardar la clave y el valor:", error);
 });
-     
-
   }
-  
-  
+   hexToRGB(hex:any) {
+    // Eliminar el símbolo '#' del valor hexadecimal
+    hex = hex.replace("#", "");
+    
+    // Convertir el valor hexadecimal a valores RGB
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    return [r, g, b];
+  }
+ 
   
 
 }
-

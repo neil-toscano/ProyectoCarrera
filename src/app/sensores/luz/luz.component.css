@@ -1,0 +1,18 @@
+.cards-dentro{
+    display: flex;
+    justify-content: space-evenly;
+    
+
+
+}
+@media only screen and (max-width: 1000px) {
+    .cards-dentro{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .cards-dentro div{
+        margin-bottom: 10px;
+    }
+
+  }

@@ -1,1 +1,11 @@
-<p-tieredMenu [model]="items"></p-tieredMenu>
+<mat-list role="list"
+*ngFor="let bar of items"
+>
+    <mat-list-item role="listitem"
+    [routerLink]="bar.routerLink">
+        <mat-icon >{{bar.icon}}</mat-icon>
+        {{bar.label}}
+    
+    </mat-list-item>
+    
+  </mat-list>

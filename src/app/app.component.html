@@ -1,16 +1,45 @@
-<div class="flex flex-row flex-wrap  " id="componente">
-    <div class="flex m-1 "  id="barra"><app-barra></app-barra></div>
-    <div class="flex w-9 m-1" >
 
-        <div style="width: 100%; padding: 5px;">
-            
-                <h1 style="text-align: center;">GRÁFICAS</h1>
-                <router-outlet></router-outlet>
-                
-            
-        </div>
-    </div>
-</div>
+<mat-sidenav-container fullscreen class="fondo" >
+    <mat-sidenav #sidenav mode="over" [ngStyle]="{width:'250px'}">
+    <mat-toolbar color="primary">
+      <button mat-icon-button 
+      class="example-icon" 
+      (click)="sidenav.toggle()"
+      aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Verde Tech</span>
+      
+    </mat-toolbar>
+    <app-barra></app-barra>
+    </mat-sidenav>
+    
+
+    <mat-sidenav-content >
+
+    <mat-toolbar color="primary">
+      <button mat-icon-button 
+      class="example-icon" 
+      (click)="sidenav.toggle()"
+      aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Verde Tech</span>
+      
+      
+    </mat-toolbar>
+    <mat-card >
+      <mat-card-content class="m-5">
+        <router-outlet ></router-outlet>
+        
+      </mat-card-content>
+    </mat-card>
+    
+  </mat-sidenav-content>
   
+</mat-sidenav-container>
+
+
+
 
 

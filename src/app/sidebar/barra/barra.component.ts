@@ -12,54 +12,39 @@ export class BarraComponent implements OnInit {
         this.items = [
             {
                 label: 'Temperatura',
-                icon: 'pi pi-fw pi-file',
+                icon: 'bolt',
                 routerLink:['/sensores/temperatura']
                 
             },
-            {
-              separator:true
-            },
+            
             {
                 label: 'Nutrientes',
-                icon: 'pi pi-fw pi-pencil',
-                items: [
-                    {
-                        label: 'Nitrogeno(N)',
-                        icon: 'pi pi-fw pi-align-left',
-                        routerLink:['/sensores/nitrogeno']
-                    },
-                    {
-                        label: 'Fosforo(P)',
-                        icon: 'pi pi-fw pi-align-right',
-                        routerLink:['/sensores/fosforo']
-                    },
-                    {
-                        label: 'K(Potasio)',
-                        icon: 'pi pi-fw pi-align-center',
-                        routerLink:['/sensores/potasio']
-                    }
+                icon: 'token',
+                routerLink: ['/sensores/nutrientes'
                 ]
             },
-            {separator:true},
 
             {
                 label: 'Humedad del suelo',
-                icon: 'pi pi-fw pi-user',
+                icon: 'water_drop',
                 routerLink:['/sensores/humedad']
                 
             },
-            {separator:true},
             {
                 label: 'Humedad del ambiente',
-                icon: 'pi pi-fw pi-calendar',
+                icon: 'foggy',
                 routerLink:['/sensores/humedad-ambiente']
                 
             },
-            {separator:true},
             {
               label: 'Sensor de PH del suelo',
-              icon: 'pi pi-fw pi-calendar',
+              icon: 'compost',
               routerLink:['/sensores/ph']
+            },
+            {
+                label:"Intensidad Luz",
+                icon:"light",
+                routerLink:['/sensores/luz']
             }
         ];
     }

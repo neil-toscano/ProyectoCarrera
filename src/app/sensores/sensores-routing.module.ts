@@ -5,6 +5,7 @@ import { HumedadAmbienteComponent } from "./humedad-ambiente/humedad-ambiente.co
 import { HumedadComponent } from "./humedad/humedad.component";
 import { TemperaturaComponent } from "./temperatura/temperatura.component";
 import { NutrientesComponent } from "./nutrientes/nutrientes.component";
+import { LuzComponent } from "./luz/luz.component";
 const routes:Routes=[
     {
         path:'ph',
@@ -31,6 +32,10 @@ const routes:Routes=[
         path:'nutrientes',
         component:NutrientesComponent
 
+    },
+    {
+        path:'luz',
+        component:LuzComponent
     },
     {
         path:'**',
